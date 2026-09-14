@@ -1,3 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Oliver Eicholz | Executive Project Manager</title>
+
+  <meta
+    name="description"
+    content="Oliver Eicholz, Executive Project Manager at The Maynard Group. Connect, save contact information, and learn more."
+  >
+
+  <meta name="theme-color" content="#111827">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-solid: #ffffff;
+      --text: #111827;
+      --muted: #667085;
+      --line: rgba(17, 24, 39, 0.09);
+      --primary: #111827;
+      --primary-text: #ffffff;
+      --soft: #f2f4f7;
+      --shadow: 0 20px 60px rgba(17, 24, 39, 0.12);
+      --radius: 28px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0d10;
+        --card: rgba(20, 23, 28, 0.9);
+        --card-solid: #14171c;
+        --text: #f9fafb;
+        --muted: #a8b0bd;
+        --line: rgba(255, 255, 255, 0.08);
+        --primary: #f9fafb;
+        --primary-text: #111827;
+        --soft: #20242b;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family:
+        Arial,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(circle at top left, rgba(120, 119, 198, 0.15), transparent 30%),
+        radial-gradient(circle at top right, rgba(64, 156, 255, 0.12), transparent 28%),
+        var(--bg);
+
+      padding: 24px 16px 50px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      position: relative;
+      overflow: hidden;
+
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+
+      padding: 38px 24px 26px;
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      animation: rise 0.7s ease both;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      top: -170px;
+      right: -110px;
+      background: rgba(80, 130, 255, 0.12);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .headshot-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .headshot {
+      width: 126px;
+      height: 126px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+
+      border: 5px solid var(--card-solid);
+
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.18),
+        0 0 0 1px var(--line);
+    }
+
+    .identity {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(30px, 8vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .title {
+      margin: 9px 0 3px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .company {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .save-button {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+
+      margin-top: 28px;
+      padding: 16px 20px;
+
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+
+      background: var(--primary);
+      color: var(--primary-text);
+
+      cursor: pointer;
+
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease;
+    }
+
+    .save-button:active {
+      transform: scale(0.98);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin-top: 13px;
+    }
+
+    .action {
+      min-width: 0;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+
+      padding: 13px 5px 11px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+
+      font-size: 11px;
+      font-weight: 600;
+
+      transition:
+        transform 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .action:hover {
+      transform: translateY(-2px);
+    }
+
+    .action svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .section {
+      margin-top: 16px;
+
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+
+      padding: 22px;
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      animation: rise 0.7s ease both;
+    }
+
+    .section:nth-of-type(2) {
+      animation-delay: 0.08s;
+    }
+
+    .section:nth-of-type(3) {
+      animation-delay: 0.14s;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 8px;
+
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      letter-spacing: -0.4px;
+    }
+
+    /* Smaller About statement so it stays on one line */
+    .about-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .section p {
+      margin: 0;
+
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .expertise {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .tag {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+
+      padding: 9px 12px;
+
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .link-row {
+      margin-top: 18px;
+
+      display: flex;
+      gap: 10px;
+    }
+
+    .secondary-button {
+      flex: 1;
+
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: var(--text);
+
+      border-radius: 14px;
+
+      padding: 13px 14px;
+
+      text-align: center;
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+    .share-card {
+      margin-top: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+
+      padding: 18px 20px;
+
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .share-copy strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .share-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .share-button {
+      white-space: nowrap;
+
+      border: 0;
+      border-radius: 12px;
+
+      padding: 11px 15px;
+
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+
+      background: var(--primary);
+      color: var(--primary-text);
+
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 10px 10px;
+
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 99;
+
+      left: 50%;
+      bottom: 26px;
+
+      transform: translate(-50%, 20px);
+
+      background: #111827;
+      color: #ffffff;
+
+      padding: 12px 17px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 390px) {
+      body {
+        padding-left: 11px;
+        padding-right: 11px;
+      }
+
+      .profile-card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .action {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <section class="profile-card">
+
+      <div class="headshot-wrap">
+        <img
+          class="headshot"
+          src="headshot.png"
+          alt="Oliver Eicholz"
+        >
+      </div>
+
+      <div class="identity">
+        <h1>Oliver Eicholz</h1>
+
+        <p class="title">
+          Executive Project Manager
+        </p>
+
+        <p class="company">
+          The Maynard Group
+        </p>
+      </div>
+
+      <button
+        class="save-button"
+        onclick="saveContact()"
+      >
+        Save to Contacts
+      </button>
+
+      <div class="actions">
+
+        <a
+          class="action"
+          href="tel:+18312127051"
+          aria-label="Call Oliver"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+              19.79 19.79 0 0 1-8.63-3.07
+              19.5 19.5 0 0 1-6-6
+              19.79 19.79 0 0 1-3.07-8.67
+              A2 2 0 0 1 4.11 2h3
+              a2 2 0 0 1 2 1.72
+              12.84 12.84 0 0 0 .7 2.81
+              2 2 0 0 1-.45 2.11
+              L8.09 9.91
+              a16 16 0 0 0 6 6
+              l1.27-1.27
+              a2 2 0 0 1 2.11-.45
+              12.84 12.84 0 0 0 2.81.7
+              A2 2 0 0 1 22 16.92z">
+            </path>
+          </svg>
+
+          Call
+        </a>
+
+        <a
+          class="action"
+          href="sms:+18312127051"
+          aria-label="Text Oliver"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z">
+            </path>
+          </svg>
+
+          Text
+        </a>
+
+        <a
+          class="action"
+          href="mailto:oeicholz@themaynardgroup.com"
+          aria-label="Email Oliver"
+        >
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
+          </svg>
+
+          Email
+        </a>
+
+        <a
+          class="action"
+          href="https://www.linkedin.com/in/oliver-eicholz-285389162"
+          target="_blank"
+          rel="noopener"
+          aria-label="Oliver on LinkedIn"
+        >
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <path d="M7 10v7"></path>
+            <path d="M7 7h.01"></path>
+            <path d="M11 17v-4a3 3 0 0 1 6 0v4"></path>
+            <path d="M11 10v7"></path>
+          </svg>
+
+          LinkedIn
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <span class="eyebrow">
+        About
+      </span>
+
+      <h2 class="about-title">
+        Technology. Operations. Execution.
+      </h2>
+
+      <p>
+        Oliver Eicholz is Executive Project Manager at The Maynard Group,
+        where he leads complex technology initiatives spanning the PMO,
+        ServiceONE operations, customer support, systems integration,
+        managed IT and unified communications.
+        His focus is bringing structure, accountability and measurable
+        outcomes to projects and operational teams while helping
+        organizations use technology more effectively.
+      </p>
+
+    </section>
+
+
+    <section class="section">
+
+      <span class="eyebrow">
+        Expertise
+      </span>
+
+      <h2>
+        What I Do
+      </h2>
+
+      <div class="expertise">
+
+        <span class="tag">
+          Project &amp; Program Leadership
+        </span>
+
+        <span class="tag">
+          Technology Strategy
+        </span>
+
+        <span class="tag">
+          Managed IT
+        </span>
+
+        <span class="tag">
+          Service Operations
+        </span>
+
+        <span class="tag">
+          Unified Communications
+        </span>
+
+        <span class="tag">
+          Systems Integration
+        </span>
+
+        <span class="tag">
+          Process Improvement
+        </span>
+
+        <span class="tag">
+          Customer Experience
+        </span>
+
+        <span class="tag">
+          Operational Leadership
+        </span>
+
+      </div>
+
+    </section>
+
+
     <section class="section">
 
       <span class="eyebrow">
@@ -41,3 +665,154 @@
       </div>
 
     </section>
+
+
+    <section class="share-card">
+
+      <div class="share-copy">
+
+        <strong>
+          Share my card
+        </strong>
+
+        <span>
+          Send this profile to someone else
+        </span>
+
+      </div>
+
+      <button
+        class="share-button"
+        onclick="shareCard()"
+      >
+        Share
+      </button>
+
+    </section>
+
+
+    <footer>
+      olivereicholz.com
+    </footer>
+
+  </main>
+
+
+  <div
+    class="toast"
+    id="toast"
+  >
+    Link copied
+  </div>
+
+
+  <script>
+
+    const CARD_URL = "https://olivereicholz.com";
+
+
+    function saveContact() {
+
+      const vCard =
+`BEGIN:VCARD
+VERSION:3.0
+N:Eicholz;Oliver;;;
+FN:Oliver Eicholz
+ORG:The Maynard Group
+TITLE:Executive Project Manager
+TEL;TYPE=CELL:+18312127051
+EMAIL;TYPE=WORK:oeicholz@themaynardgroup.com
+URL:https://themaynardgroup.com
+URL:https://www.linkedin.com/in/oliver-eicholz-285389162
+NOTE:Executive Project Manager at The Maynard Group
+END:VCARD`;
+
+      const blob = new Blob(
+        [vCard],
+        {
+          type: "text/vcard;charset=utf-8"
+        }
+      );
+
+      const link = document.createElement("a");
+
+      link.href = URL.createObjectURL(blob);
+      link.download = "Oliver-Eicholz.vcf";
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(link.href);
+
+    }
+
+
+    async function shareCard() {
+
+      const shareData = {
+        title: "Oliver Eicholz",
+        text: "Oliver Eicholz | Executive Project Manager at The Maynard Group",
+        url: CARD_URL
+      };
+
+      try {
+
+        if (navigator.share) {
+
+          await navigator.share(shareData);
+
+        } else {
+
+          await navigator.clipboard.writeText(CARD_URL);
+
+          showToast("Link copied");
+
+        }
+
+      } catch (error) {
+
+        if (error.name !== "AbortError") {
+
+          try {
+
+            await navigator.clipboard.writeText(CARD_URL);
+
+            showToast("Link copied");
+
+          } catch (copyError) {
+
+            window.prompt(
+              "Copy this link:",
+              CARD_URL
+            );
+
+          }
+
+        }
+
+      }
+
+    }
+
+
+    function showToast(message) {
+
+      const toast = document.getElementById("toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("visible");
+
+      setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 2200);
+
+    }
+
+  </script>
+
+</body>
+</html>
