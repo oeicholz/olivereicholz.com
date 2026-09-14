@@ -751,51 +751,47 @@ END:VCARD`;
 
 
     async function shareCard() {
+  try {
+    const response = await fetch("oliver-qr.png");
+    const blob = await response.blob();
 
-      const shareData = {
-        title: "Oliver Eicholz",
-        text: "Oliver Eicholz | Executive Project Manager at The Maynard Group",
-        url: CARD_URL
-      };
+    const qrFile = new File(
+      [blob],
+      "Oliver-Eicholz-QR.png",
+      { type: blob.type || "image/png" }
+    );
 
-      try {
+    const shareData = {
+      title: "Oliver Eicholz",
+      text: "Oliver Eicholz | Executive Project Manager | The Maynard Group",
+      files: [qrFile]
+    };
 
-        if (navigator.share) {
-
-          await navigator.share(shareData);
-
-        } else {
-
-          await navigator.clipboard.writeText(CARD_URL);
-
-          showToast("Link copied");
-
-        }
-
-      } catch (error) {
-
-        if (error.name !== "AbortError") {
-
-          try {
-
-            await navigator.clipboard.writeText(CARD_URL);
-
-            showToast("Link copied");
-
-          } catch (copyError) {
-
-            window.prompt(
-              "Copy this link:",
-              CARD_URL
-            );
-
-          }
-
-        }
-
-      }
-
+    if (
+      navigator.canShare &&
+      navigator.canShare({ files: [qrFile] }) &&
+      navigator.share
+    ) {
+      await navigator.share(shareData);
+      return;
     }
+
+    // Fallback for browsers that cannot share files
+    const link = document.createElement("a");
+    link.href = "oliver-qr.png";
+    link.download = "Oliver-Eicholz-QR.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    showToast("QR code downloaded");
+
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      showToast("Unable to share QR");
+    }
+  }
+}
 
 
     function showToast(message) {
