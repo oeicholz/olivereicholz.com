@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oliver Eicholz</title>
-  <meta name="description" content="Oliver Eicholz - Executive Project Manager at The Maynard Group" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oliver Eicholz | Digital Business Card</title>
 </head>
 <body>
-  <main>
-    <h1>Oliver Eicholz</h1>
-    <p>Executive Project Manager</p>
-    <p>The Maynard Group</p>
-  </main>
+  <h1>Oliver Eicholz</h1>
+  <p>Executive Project Manager</p>
+  <p>The Maynard Group</p>
 </body>
 </html>
